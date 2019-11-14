@@ -52,6 +52,8 @@ describe('timeLine.vue', () => {
       resolve();
     }).then(() => {
       expect(vm.lines.length).to.be.equal(4);
+      // 时间有序
+      expect(vm.line[2].issuedTime).to.be.least(vm.line[3].issuedTime);
     });
   });
   it('测试获取更新的方法 :获取到了2条数据 \n\t\t function: getUpdate() \n\t\t requeset: /timeline/update', () => {
@@ -62,6 +64,8 @@ describe('timeLine.vue', () => {
       resolve();
     }).then(() => {
       expect(vm.lines.length).to.be.equal(6);
+      // 时间有序
+      expect(vm.line[1].issuedTime).to.be.least(vm.line[2].issuedTime);
     });
   });
 });

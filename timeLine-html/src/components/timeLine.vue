@@ -20,7 +20,7 @@
         </div>
 
         <div class="flex flex-start">
-          <div class="img-box">
+          <div class="img-box" v-if="line.pic!=null">
             <img :src="line.pic" alt="图片" />
           </div>
         </div>
