@@ -22,7 +22,7 @@ Mock.mock(RegExp('/api/timeline/more'), 'get', function () {
 }); // 初始化获取数据
 Mock.mock(RegExp('/api/timeline/update'), 'get', function () {
   return Mock.mock({
-    'data|2': [
+    'data|1': [
       {
         name: 'user',
         issuedTime: new Date().getTime().toFixed(0),

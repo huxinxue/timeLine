@@ -3,7 +3,9 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import api from 'axios';
 
+Vue.$api = api;
 Vue.config.productionTip = false;
 
 // 引入mockjs

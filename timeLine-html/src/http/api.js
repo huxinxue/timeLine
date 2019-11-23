@@ -22,7 +22,6 @@ axios.interceptors.response.use(
   }
 );
 // 封装axios的get请求
-
 export function fetch (url, params) {
   return new Promise((resolve, reject) => {
     axios.get(url, params)
@@ -35,7 +34,7 @@ export function fetch (url, params) {
   });
 }
 export default {
-  get (url, params) {
+  fetch (url, params) {
     return fetch(url, params);
   }
 };

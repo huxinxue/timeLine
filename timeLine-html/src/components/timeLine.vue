@@ -37,7 +37,7 @@ export default {
   name: 'timeLine',
   data () {
     return {
-      server: '/api/',
+      server: 'http://localhost:8080/',
       lines: []
     };
   },
@@ -45,19 +45,19 @@ export default {
     init: function () {
       var timeline = this;
       api
-        .get(this.server + 'timeline')
+        .fetch(this.server + 'timeline')
         .then(response => {
           timeline.lines = response.data;
-          console.log(JSON.stringify(timeline.lines));
         })
         .catch(err => {
           console.log(JSON.stringify(err));
         });
     },
     getTime: function (time) {
-      if (time < 0) return '参数错误：时间为负数';
+      if (typeof (time) !== 'number') throw new TypeError('数据类型错误');
+      if (time < 0) throw new Error('参数错误：时间为负数');
       var date = new Date().getTime() - time;
-      if (date < 0) return '参数错误：未来时间';
+      if (date < 0) throw new Error('参数错误：时间为未来时刻');
       date = date / (1000 * 60);
       if (date < 1) {
         return '刚刚';
@@ -75,7 +75,7 @@ export default {
     getMore: function () {
       var timeline = this;
       api
-        .get(this.server + 'timeline/more')
+        .fetch(this.server + 'timeline/more')
         .then(response => {
           timeline.lines = timeline.lines.concat(response.data);
         })
@@ -86,7 +86,7 @@ export default {
     getUpdate: function () {
       var timeline = this;
       api
-        .get(this.server + 'timeline/update')
+        .fetch(this.server + 'timeline/update')
         .then(response => {
           timeline.lines = response.data.concat(timeline.lines);
         })
